@@ -6,6 +6,7 @@ const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
 const http = require('http');
 const config = require('./config');
+const mongoSanitize = require('express-mongo-sanitize');
 
 console.log('🚀 Initializing server...');
 
@@ -25,6 +26,7 @@ const server = http.createServer(app);
 console.log('🔧 Applying middlewares...');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(mongoSanitize()); // prevent SQL injection
 app.use(helmet());
 app.use(cors());
 app.use(morgan('dev'));

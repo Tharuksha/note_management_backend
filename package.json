@@ -4,24 +4,25 @@
     "description": "Backend for Personal Knowledge Base / Notes App",
     "main": "app.js",
     "scripts": {
-      "start": "node app.js",
-      "dev": "nodemon app.js"
+        "start": "node app.js",
+        "dev": "nodemon app.js"
     },
     "dependencies": {
-      "bcrypt": "^5.0.1",
-      "cors": "^2.8.5",
-      "dotenv": "^16.0.3",
-      "express": "^4.18.2",
-      "express-rate-limit": "^6.7.0",
-      "express-validator": "^6.14.2",
-      "helmet": "^6.0.1",
-      "jsonwebtoken": "^9.0.0",
-      "mongoose": "^7.0.1",
-      "morgan": "^1.10.0",
-      "socket.io": "^4.6.1"
+        "bcrypt": "^5.0.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "express-rate-limit": "^6.7.0",
+        "express-validator": "^6.14.2",
+        "helmet": "^6.0.1",
+        "jsonwebtoken": "^9.0.0",
+        "mongoose": "^7.0.1",
+        "morgan": "^1.10.0",
+        "socket.io": "^4.6.1",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1"
     },
     "devDependencies": {
-      "nodemon": "^2.0.22"
+        "nodemon": "^2.0.22"
     }
-  }
-  
+}

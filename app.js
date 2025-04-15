@@ -37,6 +37,37 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+app.get('/', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Welcome to Notes API</title>
+    </head>
+    <body style="font-family: Arial, sans-serif; background: #fefefe; color: #333; padding: 3rem; text-align: center;">
+      <h1 style="font-size: 2.5rem; color: #4CAF50;">📚 Welcome to the Notes API</h1>
+      <p style="font-size: 1.2rem; margin-top: 1rem;">
+        Your personal knowledge base, organized and always available.
+      </p>
+      <div style="margin: 2rem auto; width: fit-content; background: #f4f4f4; padding: 1.5rem 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+        <p style="font-size: 1rem;">
+          🚀 Start exploring: 
+          <code style="background: #e0e0e0; padding: 0.3rem 0.5rem; border-radius: 5px;">/api</code>
+        </p>
+        <p style="font-size: 0.95rem; color: #666;">Access endpoints for notes, folders, tags, and authentication.</p>
+      </div>
+      <footer style="margin-top: 3rem; font-size: 0.9rem; color: #888;">
+        <p>Made with ❤️ Tharuksha</p>
+      </footer>
+    </body>
+    </html>
+  `);
+});
+
+
+
 // Routes
 console.log('📦 Loading routes...');
 console.log('📦 Routes mounted:');

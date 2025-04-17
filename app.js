@@ -28,7 +28,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(mongoSanitize()); // prevent SQL injection
 app.use(helmet());
-app.use(cors());
+
+// Configure CORS 
+app.use(cors({
+  origin: config.frontendURI, 
+  credentials: true, // Allow credentials)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+  allowedHeaders: ['Content-Type', 'Authorization'] 
+}));
+
 app.use(morgan('dev'));
 
 // Rate limiting
@@ -67,8 +75,6 @@ app.get('/', (req, res) => {
     </html>
   `);
 });
-
-
 
 // Routes
 console.log('📦 Loading routes...');

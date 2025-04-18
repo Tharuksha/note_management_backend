@@ -29,3 +29,15 @@ exports.login = async (req, res, next) => {
     next(error);
   }
 };
+
+// GET /api/auth/profile
+exports.getProfile = async (req, res, next) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+    res.json(req.user);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const authController = require('../controllers/authController');
+const auth = require('../middlewares/auth'); 
 const activityLogger = require('../middlewares/activityLogger');
 
 // POST /api/auth/signup
@@ -39,6 +40,14 @@ router.post(
     next();
   },
   authController.login
+);
+
+// GET /api/auth/profile
+router.get(
+  '/profile',
+  auth,
+  activityLogger,
+  authController.getProfile
 );
 
 module.exports = router;

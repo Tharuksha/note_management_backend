@@ -9,27 +9,29 @@ const activityLogger = require('../middlewares/activityLogger');
 router.get('/', auth, tagsController.getTags);
 
 // GET /api/tags/:id
-router.get('/:id', auth, [
-  param('id').isMongoId().withMessage('Invalid tag id')
-], (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()){
-    return res.status(400).json({ errors: errors.array() });
-  }
-  next();
-}, tagsController.getTagById);
+router.get(
+  '/:id',
+  auth,
+  [ param('id').isMongoId().withMessage('Invalid tag id') ],
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+    next();
+  },
+  tagsController.getTagById
+);
 
 // POST /api/tags
 router.post(
   '/',
   auth,
   activityLogger,
-  [ body('name').notEmpty().withMessage('Name is required') ],
+  [
+    body('name').notEmpty().withMessage('Name is required')
+  ],
   (req, res, next) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()){
-      return res.status(400).json({ errors: errors.array() });
-    }
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
     next();
   },
   tagsController.createTag
@@ -46,9 +48,7 @@ router.put(
   ],
   (req, res, next) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()){
-      return res.status(400).json({ errors: errors.array() });
-    }
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
     next();
   },
   tagsController.updateTag
@@ -59,14 +59,10 @@ router.delete(
   '/:id',
   auth,
   activityLogger,
-  [
-    param('id').isMongoId().withMessage('Invalid tag id')
-  ],
+  [ param('id').isMongoId().withMessage('Invalid tag id') ],
   (req, res, next) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()){
-      return res.status(400).json({ errors: errors.array() });
-    }
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
     next();
   },
   tagsController.deleteTag

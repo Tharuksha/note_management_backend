@@ -24,6 +24,13 @@ exports.getTagById = async (req, res, next) => {
 // POST /api/tags
 exports.createTag = async (req, res, next) => {
   try {
+    // Check if tag with the same name already exists
+    const existingTag = await Tag.findOne({ name: req.body.name });
+    if (existingTag) {
+      return res.status(400).json({ message: 'Tag with this name already exists' });
+    }
+
+    // If not, create the new tag
     const tag = new Tag(req.body);
     await tag.save();
     res.status(201).json(tag);
